@@ -1,10 +1,18 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 
 const Projects = () => {
   const [activeProject, setActiveProject] = useState(null);
   const projectsRef = useRef(null);
   const isInView = useInView(projectsRef, { once: false, amount: 0.2 });
+
+  useEffect(() => {
+    if (activeProject) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  }, [activeProject]);
 
   const projectsData = [
     {
@@ -83,7 +91,6 @@ const Projects = () => {
     }
   };
 
-  // Toggle project details
   const toggleProject = (id) => {
     setActiveProject(activeProject === id ? null : id);
   };
@@ -110,13 +117,12 @@ const Projects = () => {
         animate={isInView ? "visible" : "hidden"}
         className="relative"
       >
-        {/* Project Showcase */}
-        <div className="flex flex-col md:flex-row flex-wrap">
+        <div className="flex flex-col md:flex-row flex-wrap relative z-10">
           {projectsData.map((project) => (
             <motion.div
               key={project.id}
               variants={projectVariants}
-              className="w-full md:w-1/2 lg:w-1/3 p-4"
+              className="w-full md:w-1/2 lg:w-1/3 p-4 relative z-10"
             >
               <motion.div
                 className="group cursor-pointer relative h-64 md:h-80 rounded-xl overflow-hidden"
@@ -125,7 +131,7 @@ const Projects = () => {
                 transition={{ duration: 0.3 }}
                 onClick={() => toggleProject(project.id)}
               >
-                <div className="absolute inset-0 flex flex-col justify-end p-6 z-10">
+                <div className="absolute inset-0 flex flex-col justify-end p-6 z-30">
                   <motion.h3 
                     className="font-winky-rough text-sm md:text-3xl mb-2"
                     initial={{ opacity: 0.8 }}
@@ -152,21 +158,19 @@ const Projects = () => {
                   className="absolute top-4 right-4 w-10 h-10 bg-transparent rounded-full flex items-center justify-center text-black"
                   whileHover={{ scale: 1.2, rotate: 90 }}
                 >
-                  {/* <span className="text-lg">+</span> */}
                 </motion.div>
               </motion.div>
             </motion.div>
           ))}
         </div>
 
-        {/* Project Details Modal */}
         <AnimatePresence>
           {activeProject && (
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-48 p-4 md:p-8"
+              className="fixed inset-0 bg-black bg-opacity-80 backdrop-blur-sm flex items-center justify-center z-40 p-4 md:p-8"
               onClick={() => setActiveProject(null)}
             >
               <motion.div
@@ -174,7 +178,7 @@ const Projects = () => {
                 initial="hidden"
                 animate="visible"
                 exit="exit"
-                className="bg-gray-900 rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto"
+                className="bg-gray-900 rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto z-50"
                 onClick={(e) => e.stopPropagation()}
               >
                 {projectsData.filter(p => p.id === activeProject).map(project => (
@@ -234,17 +238,11 @@ const Projects = () => {
       >
         <motion.a
           href="#contact"
-          className="relative inline-flex items-center px-8 py-4 overflow-hidden font-horizon text-lg tracking-wider text-white bg-transparent b rounded-lg group"
+          className="relative inline-flex items-center px-8 py-4 overflow-hidden font-horizon text-lg tracking-wider text-white bg-transparent rounded-lg group"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          {/* <span className="absolute left-0 block w-full h-0 transition-all bg-[#ff004f] opacity-100 group-hover:h-full top-1/2 group-hover:top-0 duration-400 ease"></span>
-          <span className="absolute right-0 flex items-center justify-start w-10 h-10 duration-300 transform translate-x-full group-hover:translate-x-0 ease">
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-            </svg>
-          </span> */}
-          {/* <span className="relative">Let's Collaborate</span> */}
+          Let's Collaborate
         </motion.a>
       </motion.div>
     </section>

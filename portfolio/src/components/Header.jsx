@@ -74,10 +74,10 @@ const Header = () => {
   justify-center gap-4 font-rajdhani font-bold text-lg
   w-80
 `}>
-        <a href="#"><div className='cursor-pointer'>Home</div></a>  
-        <a href="#about"><div className='cursor-pointer'>About</div></a>  
-        <a href="#projects"><div className='cursor-pointer'>Projects</div></a>  
-         <a href="#contact"><div className='cursor-pointer'>Contact</div></a> 
+        <a href="#" onClick={()=>setDrop(!drop)}><div className='cursor-pointer'>Home</div></a>  
+        <a href="#about" onClick={()=>setDrop(!drop)}><div className='cursor-pointer'>About</div></a>  
+        <a href="#projects" onClick={()=>setDrop(!drop)}><div className='cursor-pointer'>Projects</div></a>  
+         <a href="#contact" onClick={()=>setDrop(!drop)}><div className='cursor-pointer'>Contact</div></a> 
         </div>):''}
         
         
