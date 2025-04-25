@@ -5,10 +5,13 @@ import Projects from './components/Projects';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import './index.css';
+import AnimatedCursor from './components/AnimatedCursor';
 
 
 function App() {
   return (
+    <>
+    <AnimatedCursor/>
     <div className="App">
       <Header />
       <About />
@@ -16,6 +19,7 @@ function App() {
       <Contact />
       <Footer />
     </div>
+    </>
   );
 }
 

@@ -7,9 +7,9 @@ const Header = () => {
   const [scrolled, setScrolled] = useState(false);
 
   const socialLinks = [
-    { icon: <FaGithub className="text-black text-xl" />, url: 'https://github.com' },
-    { icon: <FaLinkedin className="text-black text-xl" />, url: 'https://linkedin.com' },
-    { icon: <FaTwitter className="text-black text-xl" />, url: 'https://twitter.com' },
+    { icon: <FaGithub className="text-black text-xl" />, url: 'https://github.com/ubet123/' },
+    { icon: <FaLinkedin className="text-black text-xl" />, url: 'https://www.linkedin.com/in/serene-dmello-572605344/' },
+    
   ];
 
   useEffect(() => {
@@ -40,7 +40,7 @@ const Header = () => {
       {/* Navigation Bar */}
       <div 
         ref={navRef}
-        className="flex flex-row justify-between items-center py-4 bg-[rgba(3,3,3,0.966)] w-full px-6 md:px-10 lg:px-14 xl:pr-40 shadow-md fixed top-0 z-50 transition-all duration-300"
+        className="flex flex-row justify-between items-center py-4 bg-[rgba(3,3,3,0.966)] w-full px-6 md:px-10 lg:px-14 xl:pr-40 shadow-md fixed top-0 z-40 transition-all duration-300"
       >
         <div className="font-orbitron text-3xl md:text-4xl lg:text-5xl font-extrabold text-white">
           <span className="text-yellow-400">S</span>erene.

@@ -5,6 +5,7 @@ import { MdOutlineEmail } from "react-icons/md";
 import { FaPhoneAlt } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
+import { FaRegPaperPlane } from "react-icons/fa";
 
 
 const Contact = () => {
@@ -106,8 +107,12 @@ const Contact = () => {
         transition={{ duration: 0.8 }}
         className="relative mb-16 text-center"
       >
-        <h2 className="text-4xl md:text-6xl lg:text-7xl font-rajdhani font-bold tracking-wider mb-4">
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#fff9b1] to-[#ffd8a1]">Connect</span> With Me
+        <h2 className="text-3xl md:text-6xl lg:text-7xl font-rajdhani font-bold tracking-wider mb-4">
+          <div className='flex flex-row justify-center items-center gap-3 md:gap-5'>
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#fff9b1] to-[#ffd8a1]">Connect</span> With Me 
+          <FaRegPaperPlane />
+          </div>
+         
         </h2>
         <p className="mt-4 font-dosis text-lg md:text-xl text-gray-300 max-w-2xl mx-auto">
           Have a project in mind? Let's create something amazing together.
@@ -140,7 +145,7 @@ const Contact = () => {
             <div>
               
               <h4 className="font-rajdhani text-gray-400 text-sm mb-1">Email</h4>
-              <p className="font-poppins">dmelloserene08@gmail.com</p>
+              <p className="font-poppins md:text-base text-sm">dmelloserene08@gmail.com</p>
             </div>
           </motion.div>
           

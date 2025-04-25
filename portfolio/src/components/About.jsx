@@ -240,7 +240,7 @@ const About = () => {
               institution="Fr. Conceicao Rodrigues College of Engineering"
               degree="B.Tech (Computer Engineering)"
               period="2023-Current"
-              grades="Semester 1: 9.89 • Semester 2: 9.18"
+              grades="CGPA: 9.5"
             />
             <EducationCard 
               institution="Vidyavardhinis Annasaheb Vartak College"

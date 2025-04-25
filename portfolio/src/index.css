@@ -15,3 +15,26 @@ body {
   color: white;
 }
 
+@keyframes gradient-x {
+  0% { background-position: 0% 50% }
+  100% { background-position: 100% 50% }
+}
+.animate-gradient-x {
+  background-size: 200% auto;
+  animation: gradient-x 3s linear infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) }
+  50% { transform: translateY(-8px) }
+}
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+.animate-float-delay {
+  animation: float 5s ease-in-out 1s infinite;
+}
+
+.svg-icon{
+  color: white;
+}
