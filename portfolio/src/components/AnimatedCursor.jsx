@@ -1,12 +1,24 @@
 import { useState, useEffect } from 'react';
 
 export default function AnimatedCursor() {
+  const [isMobile, setIsMobile] = useState(false);
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [hidden, setHidden] = useState(false);
   const [clicked, setClicked] = useState(false);
   const [hovered, setHovered] = useState(false);
   
   useEffect(() => {
+    // Check if mobile on mount and resize
+    const checkIfMobile = () => {
+      setIsMobile(window.innerWidth <= 768); // Adjust breakpoint as needed
+    };
+    
+    checkIfMobile();
+    window.addEventListener('resize', checkIfMobile);
+    
+    // Early return if mobile
+    if (isMobile) return;
+
     // Only hide cursor on elements that have our custom cursor
     const addCursorStyle = () => {
       const styleElement = document.createElement('style');
@@ -72,9 +84,13 @@ export default function AnimatedCursor() {
     return () => {
       removeEventListeners();
       document.head.removeChild(styleElement);
+      window.removeEventListener('resize', checkIfMobile);
     };
-  }, []);
+  }, [isMobile]); // Re-run effect if isMobile changes
   
+  // Return null for mobile (disables the cursor completely)
+  if (isMobile) return null;
+
   return (
     <>
       {/* Main cursor circle */}
@@ -96,8 +112,6 @@ export default function AnimatedCursor() {
           transition: 'opacity 0.1s ease-in-out, transform 0.1s ease-in-out'
         }}
       />
-      
-     
     </>
   );
 }

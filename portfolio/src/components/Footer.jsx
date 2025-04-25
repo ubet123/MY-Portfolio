@@ -6,22 +6,65 @@ const Footer = () => {
     <motion.footer 
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      className="w-full bg-gradient-to-r from-gray-700 to-gray-800 py-6 text-center relative overflow-hidden"
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      className="w-full bg-gray-900 py-6 text-center relative overflow-hidden border-t border-gray-800"
     >
-      {/* Animated border top */}
-      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#FF6B6B] via-[#FFD166] to-[#FF6B6B] animate-gradient-x"></div>
+      {/* Glowing gradient border top */}
+      <motion.div 
+        initial={{ scaleX: 0 }}
+        animate={{ scaleX: 1 }}
+        transition={{ duration: 1.2, delay: 0.2 }}
+        className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#FFD166] to-transparent origin-left"
+      />
       
-      <div className="text-gray-300 font-mono tracking-wider text-sm md:text-base">
-        <span className="opacity-90">Copyright © {new Date().getFullYear()} </span>
-        <span className="font-semibold text-white hover:text-[#FFD166] transition-colors duration-300 cursor-pointer">
-          Serene
-        </span>
-      </div>
+      <div className="container mx-auto px-4">
+        <motion.div 
+          whileHover={{ scale: 1.02 }}
+          className="inline-block"
+        >
+          <span className="text-gray-400 font-light text-sm tracking-wider">
+            © {new Date().getFullYear()}{' '}
+          </span>
+          <motion.span 
+            initial={{ color: "#FFFFFF" }}
+            whileHover={{ 
+              color: "#FFD166",
+              textShadow: "0 0 8px rgba(255, 209, 102, 0.4)"
+            }}
+            transition={{ duration: 0.3 }}
+            className="font-normal text-white cursor-pointer font-special-gothic text-xl tracking-tight"
+            
+          >
+            Serene
+          </motion.span>
+        </motion.div>
 
-      {/* Subtle floating dots */}
-      <div className="absolute bottom-1 left-1/4 w-2 h-2 rounded-full bg-[#FFD166]/30 animate-float"></div>
-      <div className="absolute bottom-3 right-1/3 w-1.5 h-1.5 rounded-full bg-[#FF6B6B]/30 animate-float-delay"></div>
+        {/* Subtle floating dots */}
+        {[...Array(4)].map((_, i) => (
+          <motion.div
+            key={i}
+            initial={{ y: 0, opacity: 0 }}
+            animate={{ 
+              y: -10,
+              opacity: [0, 0.4, 0],
+              transition: {
+                duration: 5 + Math.random() * 5,
+                repeat: Infinity,
+                delay: Math.random() * 3,
+                ease: "linear"
+              }
+            }}
+            className="absolute rounded-full bg-[#FFD166]"
+            style={{
+              width: `${Math.random() * 20 + 2}px`,
+              height: `${Math.random() * 22 + 2}px`,
+              left: `${Math.random() * 100}%`,
+              bottom: `${Math.random() * 15 + 5}%`,
+              filter: "blur(0.5px)"
+            }}
+          />
+        ))}
+      </div>
     </motion.footer>
   );
 };

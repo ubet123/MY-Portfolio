@@ -5,24 +5,25 @@ import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa6";
 const Header = () => {
   const navRef = useRef(null);
   const [scrolled, setScrolled] = useState(false);
+  const [drop,setDrop]=useState(false)
 
   const socialLinks = [
-    { icon: <FaGithub className="text-black text-xl" />, url: 'https://github.com/ubet123/' },
+    { icon: <FaGithub className="text-black text-xl " />, url: 'https://github.com/ubet123/' },
     { icon: <FaLinkedin className="text-black text-xl" />, url: 'https://www.linkedin.com/in/serene-dmello-572605344/' },
     
   ];
 
   useEffect(() => {
     const handleScroll = () => {
-      const isScrolled = window.scrollY > 50;
+      const isScrolled = window.scrollY > 50; 
       setScrolled(isScrolled);
       
       if (navRef.current) {
         if (isScrolled) {
-          navRef.current.classList.add('bg-opacity-65', 'backdrop-blur-lg');
+          navRef.current.classList.add('bg-opacity-65', 'backdrop-blur-xl');
           navRef.current.classList.remove('bg-opacity-100');
         } else {
-          navRef.current.classList.remove('bg-opacity-35', 'backdrop-blur-lg');
+          navRef.current.classList.remove('bg-opacity-35', 'backdrop-blur-xl');
           navRef.current.classList.add('bg-opacity-100');
         }
       }
@@ -31,6 +32,11 @@ const Header = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const dropdown=()=>{
+    setDrop(!drop)
+
+  }
 
   return (
     <div id="header" 
@@ -47,13 +53,33 @@ const Header = () => {
         </div>
         
         {/* Mobile menu button */}
-        <div className="md:hidden">
+        <div onClick={dropdown} className="md:hidden">
           <button className="text-white focus:outline-none">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
             </svg>
           </button>
         </div>
+
+        {/*Dropdown navbar*/}
+        {drop?(<div className={`
+  flex fixed top-20 left-6
+  transition-height duration-300 ease-in-out 
+  ${drop ? 'h-44 translate-y-0' : 'h-0 -translate-y-2'} 
+  flex-col  rounded-lg
+  bg-gray-900/95 backdrop-blur-sm  
+  text-yellow-400 border border-gray-800 
+  
+  items-center
+  justify-center gap-4 font-rajdhani font-bold text-lg
+  w-80
+`}>
+        <a href="#"><div className='cursor-pointer'>Home</div></a>  
+        <a href="#about"><div className='cursor-pointer'>About</div></a>  
+        <a href="#projects"><div className='cursor-pointer'>Projects</div></a>  
+         <a href="#contact"><div className='cursor-pointer'>Contact</div></a> 
+        </div>):''}
+        
         
         {/* Desktop navigation */}
         <ul className="hidden md:flex flex-row list-none justify-around gap-4 lg:gap-8 text-base lg:text-xl font-semibold font-rajdhani">
