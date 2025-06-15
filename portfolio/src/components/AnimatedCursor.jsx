@@ -8,18 +8,18 @@ export default function AnimatedCursor() {
   const [hovered, setHovered] = useState(false);
   
   useEffect(() => {
-    // Check if mobile on mount and resize
+    
     const checkIfMobile = () => {
-      setIsMobile(window.innerWidth <= 768); // Adjust breakpoint as needed
+      setIsMobile(window.innerWidth <= 768); 
     };
     
     checkIfMobile();
     window.addEventListener('resize', checkIfMobile);
     
-    // Early return if mobile
+    
     if (isMobile) return;
 
-    // Only hide cursor on elements that have our custom cursor
+   
     const addCursorStyle = () => {
       const styleElement = document.createElement('style');
       styleElement.innerHTML = `
@@ -69,7 +69,7 @@ export default function AnimatedCursor() {
       setClicked(false);
     };
     
-    // Add event listeners for hoverable elements
+   
     const handleLinkHoverEvents = () => {
       document.querySelectorAll('a, button, [role="button"], input, textarea, select')
         .forEach(el => {
@@ -86,9 +86,9 @@ export default function AnimatedCursor() {
       document.head.removeChild(styleElement);
       window.removeEventListener('resize', checkIfMobile);
     };
-  }, [isMobile]); // Re-run effect if isMobile changes
+  }, [isMobile]); 
   
-  // Return null for mobile (disables the cursor completely)
+
   if (isMobile) return null;
 
   return (

@@ -13,7 +13,14 @@ const techLogos = {
   "Bootstrap": "https://cdn-icons-png.flaticon.com/128/5968/5968672.png",
   "C": "https://cdn-icons-png.flaticon.com/128/3665/3665923.png",
   "C++": "https://cdn-icons-png.flaticon.com/128/6132/6132222.png",
-  "Python": "https://cdn-icons-png.flaticon.com/128/5968/5968350.png"
+  "Python": "https://cdn-icons-png.flaticon.com/128/5968/5968350.png",
+  "Node JS":'https://cdn-icons-png.flaticon.com/128/15484/15484303.png',
+  "Express JS":'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIrq4Je7z6sTWiUmCy2ROVBWjrkv67wBxhDA&s',
+   "MongoDb":'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSuMRzP2i8h_xIFrtbyJvXy29eTCtyUpwIrzg&s', 
+   "MySQL":'https://cdn4.iconfinder.com/data/icons/logos-3/181/MySQL-512.png',
+    "PostgreSQL":'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHhYIgLQICyLdxxt1uEcA4mTUM8-kNrMMMQA&s',
+     "Git":'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBWj5xZ0pzCAmQ5nosGj2iMgdGylvthmgoaA&s', 
+     "GitHub":'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmrGmeBv3SOLSKz6OlTVlVYkfH9_W3BBgdrA&s'
 };
 
 const About = () => {
@@ -175,13 +182,13 @@ const About = () => {
             className="mt-8"
           >
             <motion.div variants={itemVariants} className="mb-8">
-              <h3 className="font-rajdhani text-lg font-bold mb-3 text-yellow-400">Frontend Development</h3>
+              <h3 className="font-rajdhani text-lg font-bold mb-3 text-yellow-400">Web Development</h3>
               <div 
                 ref={frontendSliderRef} 
                 className="flex gap-3 overflow-x-auto py-2 scrollbar-hide"
                 style={{ scrollBehavior: 'smooth' }}
               >
-                {["React.js", "JavaScript", "TypeScript", "HTML5", "CSS3", "Tailwind CSS", "Bootstrap"].map((skill) => (
+                {["React.js", "JavaScript", "TypeScript", "HTML5", "CSS3", "Tailwind CSS", "Bootstrap" , "Node JS","Express JS", "MongoDb", "MySQL", "PostgreSQL", "Git", "GitHub"].map((skill) => (
                   <SkillTag key={skill} skill={skill} />
                 ))}
                 {/* Duplicate for continuous scrolling effect */}
@@ -219,11 +226,14 @@ const About = () => {
             exit="exit"
             className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4"
           >
+            <ProjectCard title="BharatSecure" description="A women safety alert system." />
+            <ProjectCard title="BrightBuilds" description="A student project showcase platform." />
+            <ProjectCard title="OrgFlow" description="An employee task manager." />
             <ProjectCard title="FlickHive" description="A movie recommendation platform" />
-            <ProjectCard title="WorkSync" description="Team collaboration tool" />
-            <ProjectCard title="BharatSecure" description="Security solution for Indian enterprises" />
-            <ProjectCard title="Ettarra Coffee House Website" description="E-commerce platform for coffee enthusiasts" />
             <ProjectCard title="Turning The Tide Website" description="Environmental conservation platform" />
+            
+            
+            
           </motion.div>
         );
       case 'education':
@@ -350,18 +360,35 @@ const About = () => {
               variants={itemVariants}
               className="mb-12"
             >
-              <p className="font-dosis text-lg leading-relaxed">
-                B.E. Computer Engineering student at Fr. Conceicao Rodrigues College of Engineering, passionate about frontend development and UI/UX design.
-                <br /><br />
-                Proficient in <span className="text-yellow-400 font-bold">React</span>, 
-                <span className="text-yellow-400 font-bold"> TypeScript</span>, 
-                <span className="text-yellow-400 font-bold"> Tailwind CSS</span>, and 
-                <span className="text-yellow-400 font-bold"> JavaScript</span>, with experience in building responsive, user-friendly web applications.
-                <br /><br />
-                Having worked on projects like <span className="text-yellow-400 font-bold">WorkSync</span>, 
-                <span className="text-yellow-400 font-bold"> FlickHive</span>, and 
-                <span className="text-yellow-400 font-bold"> BharatSecure</span>, I excel in collaborative environments and thrive under pressure. Continuously learning, I aim to contribute to impactful web development projects.
-              </p>
+             <p className="font-dosis text-lg leading-relaxed">
+  I'm a <span className="text-yellow-400 font-bold">MERN stack developer</span> currently pursuing 
+  <span className="text-yellow-400 font-bold"> B.E. in Computer Engineering</span> at 
+  <span className="text-yellow-400 font-bold"> Fr. CRCE</span>, with a strong foundation in full-stack web development and a particular depth in frontend engineering.
+  <br /><br />
+  While I’ve worked across 
+  <span className="text-yellow-400 font-bold"> React</span>, 
+  <span className="text-yellow-400 font-bold"> Node.js</span>, 
+  <span className="text-yellow-400 font-bold"> Express</span>, and 
+  <span className="text-yellow-400 font-bold"> MongoDB</span> to build complete web applications, my core expertise lies in crafting responsive, scalable, and well-structured user interfaces using 
+  <span className="text-yellow-400 font-bold"> React</span>, 
+  <span className="text-yellow-400 font-bold"> TypeScript</span>, 
+  <span className="text-yellow-400 font-bold"> JavaScript</span>, and 
+  <span className="text-yellow-400 font-bold"> Tailwind CSS</span>.
+  <br /><br />
+  I’ve explored and refined these skills through hands-on projects such as: 
+  <span className="text-yellow-400 font-bold"> BharatSecure</span>, 
+  <span className="text-yellow-400 font-bold"> BrightBuilds</span>, 
+  <span className="text-yellow-400 font-bold"> OrgFlow</span>, 
+  <span className="text-yellow-400 font-bold"> FlickHive</span> and many more.
+  <br /><br />
+  These projects have strengthened my ability to think in terms of both 
+  <span className="text-yellow-400 font-bold">user experience</span> and 
+  <span className="text-yellow-400 font-bold">system architecture</span>, while reinforcing clean integration between frontend and backend.
+  I enjoy building interfaces that are both functional and maintainable — and I’m eager to contribute to teams that value 
+  <span className="text-yellow-400 font-bold">thoughtful design</span> and 
+  <span className="text-yellow-400 font-bold">solid engineering practices</span>.
+</p>
+
             </motion.div>
 
             {/* Tabs navigation */}

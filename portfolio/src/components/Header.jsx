@@ -97,9 +97,9 @@ const Header = () => {
         </ul>
       </div>
 
-      {/* Hero Section - Adjusted positioning based on scroll */}
+     
       <div className={`animate-appear absolute left-1/2 top-1/2 transform -translate-x-1/2 ${scrolled ? '-translate-y-[70%]' : '-translate-y-[60%]'} w-4/5 md:w-auto text-center -mt-16 transition-all duration-300`}>
-  {/* Enhanced frontend developer text */}
+  
   <div className="relative mb-2">
     <div className="font-dosis uppercase tracking-widest text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-cyan-300 mb-2">
       Front-end Developer
@@ -109,7 +109,7 @@ const Header = () => {
     </div>
   </div>
   
-  {/* Enhanced typewriter effect */}
+  {/*typewriter effect */}
   <div className="font-special-gothic text-3xl md:text-4xl lg:text-5xl pt-2 lg:pt-5 text-white drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">
     <Typewriter
       options={{

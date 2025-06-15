@@ -9,7 +9,7 @@ const Footer = () => {
       transition={{ duration: 0.5, ease: "easeOut" }}
       className="w-full bg-gray-900 py-6 text-center relative overflow-hidden border-t border-gray-800"
     >
-      {/* Glowing gradient border top */}
+    
       <motion.div 
         initial={{ scaleX: 0 }}
         animate={{ scaleX: 1 }}
@@ -39,7 +39,7 @@ const Footer = () => {
           </motion.span>
         </motion.div>
 
-        {/* Subtle floating dots */}
+       
         {[...Array(4)].map((_, i) => (
           <motion.div
             key={i}

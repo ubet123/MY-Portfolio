@@ -17,35 +17,35 @@ const Projects = () => {
   const projectsData = [
     {
       id: 1,
+      title: "BharatSecure",
+      description: "A women safety platform featuring SOS alerts, danger zone mapping, voice commands, and live location sharing.",
+      image: "https://cdn-ilbcdcb.nitrocdn.com/MeIeCSkEMhiSeDZskUUpnJqKXJDTuHPy/assets/images/optimized/rev-8cf0ce9/www.rescusaveslives.com/wp-content/uploads/2024/03/AdobeStock_583020072.jpeg",
+      link: "https://github.com/BharatSecure/TechFiesta25",
+      color: "#FF8A00"
+    },
+    {
+      id: 2,
+      title: "BrightBuilds",
+      description: "A student project showcase platform that maps creative coding projects to SDGs, with ratings, filters, and mentorship features.",
+      image: "https://img.freepik.com/free-vector/light-bulb-people-discussing-ideas-working_1262-19265.jpg?ga=GA1.1.330429559.1727962465&semt=ais_hybrid&w=740",
+      link: "https://bright-builds.vercel.app/",
+      color: "#00C853"
+    },
+    {
+      id: 3,
+      title: "OrgFlow",
+      description: "A task management system for organizations with role-based dashboards, task tracking, and progress monitoring.",
+      image: "https://img.freepik.com/free-photo/management-coaching-business-dealing-mentor-concept_53876-133858.jpg?ga=GA1.1.330429559.1727962465&semt=ais_hybrid&w=740",
+      link: "https://github.com/ubet123/OrgFlow",
+      color: "#6A1AFF"
+    },
+    {
+      id: 4,
       title: "FlickHive",
       description: "The Favorite Movies/TV Shows Tracker lets users manage and filter their favorite movies and TV shows by genre. It includes dark mode and stores preferences using local storage for a seamless experience.",
       image: "https://images.freecreatives.com/wp-content/uploads/2017/10/flat-clapperboard-icon_1063-38.jpg",
       link: "https://flick-hive-yg8z.vercel.app/",
       color: "#FF004F"
-    },
-    {
-      id: 2,
-      title: "WorkSync",
-      description: "A platform for task tracking, performance monitoring, and role-based access, with real-time updates and admin dashboards for seamless workflows.",
-      image: "https://plus.unsplash.com/premium_photo-1720032304925-b79e6d46e771?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      link: "https://sereneproject.vercel.app/",
-      color: "#4F00FF"
-    },
-    {
-      id: 3,
-      title: "BharatSecure",
-      description: "My team and I are developing BharatSecure, a website for incident reporting and response, focused on Women and Child Safety, featuring real-time reporting, heatmaps, and emergency notifications to improve public safety.",
-      image: "https://cdn-ilbcdcb.nitrocdn.com/MeIeCSkEMhiSeDZskUUpnJqKXJDTuHPy/assets/images/optimized/rev-8cf0ce9/www.rescusaveslives.com/wp-content/uploads/2024/03/AdobeStock_583020072.jpeg",
-      link: "https://github.com/Shane-Dias/TechFiesta25",
-      color: "#FF8A00"
-    },
-    {
-      id: 4,
-      title: "Ettarra Coffee Website",
-      description: "A sleek, coffee-themed platform for users to explore coffee options and join community events, designed for an engaging experience.",
-      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_4Qn3LryFISqpFq1q1KszCXYT3U6iysAbEA&s",
-      link: "https://ettarra-coffee.vercel.app/",
-      color: "#00C853"
     },
     {
       id: 5,
@@ -56,7 +56,6 @@ const Projects = () => {
       color: "#00BCD4"
     }
   ];
-
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
