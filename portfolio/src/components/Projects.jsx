@@ -25,7 +25,7 @@ const Projects = () => {
       title: "BharatSecure",
       description: "A women safety platform featuring SOS alerts, danger zone mapping, voice commands, and live location sharing.",
       image: BharatSecureImg,
-      link: "https://github.com/BharatSecure/TechFiesta25",
+      link: "https://bharat-secure.vercel.app/",
       color: "#FF8A00"
     },
     {
@@ -41,7 +41,7 @@ const Projects = () => {
       title: "OrgFlow",
       description: "A task management system for organizations with role-based dashboards, task tracking, and progress monitoring.",
       image: OrgFlowImg,
-      link: "https://github.com/ubet123/OrgFlow",
+      link: "https://org-flow-six.vercel.app/",
       color: "#6A1AFF"
     },
     {
