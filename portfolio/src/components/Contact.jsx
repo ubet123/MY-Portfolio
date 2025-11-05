@@ -39,7 +39,7 @@ const Contact = () => {
     setFormStatus({ isSubmitting: true, isSubmitted: false, error: null });
   
     try {
-      const response = await fetch('http://localhost:3000/contact', {
+      const response = await fetch('https://my-portfolio-oscd.onrender.com/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
