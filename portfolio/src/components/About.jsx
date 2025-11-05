@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import profileImage from '../assets/Serene passport size.jpg';
+import profileImage from '../assets/myprof_linkedin1.png'
 
 // Tech stack logos - replace these import paths with your actual logo paths
 const techLogos = {
@@ -28,6 +28,8 @@ const About = () => {
   const frontendSliderRef = useRef(null);
   const programmingSliderRef = useRef(null);
   const [isInView, setIsInView] = useState(false);
+  const [isFrontendHovered, setIsFrontendHovered] = useState(false);
+  const [isProgrammingHovered, setIsProgrammingHovered] = useState(false);
 
   // Animation variants
   const containerVariants = {
@@ -64,9 +66,9 @@ const About = () => {
     }
   };
 
-  // Auto-scroll for tech stack sliders with infinite effect
+  // Auto-scroll for tech stack sliders with infinite effect and pause on hover
   useEffect(() => {
-    if (activeTab === 'skills' && frontendSliderRef.current) {
+    if (activeTab === 'skills' && frontendSliderRef.current && !isFrontendHovered) {
       const frontendSlider = frontendSliderRef.current;
       let frontendScrollAmount = 0;
       const maxScroll = frontendSlider.scrollWidth / 2;
@@ -79,15 +81,15 @@ const About = () => {
           frontendSlider.scrollLeft += 1;
           frontendScrollAmount += 1;
         }
-      }, 8);
+      }, 2);
       
       return () => clearInterval(frontendSlideTimer);
     }
-  }, [activeTab, isInView]);
+  }, [activeTab, isInView, isFrontendHovered]);
 
-  // Auto-scroll for programming languages slider
+  // Auto-scroll for programming languages slider with pause on hover
   useEffect(() => {
-    if (activeTab === 'skills' && programmingSliderRef.current) {
+    if (activeTab === 'skills' && programmingSliderRef.current && !isProgrammingHovered) {
       const programmingSlider = programmingSliderRef.current;
       let programmingScrollAmount = 0;
       const maxScroll = programmingSlider.scrollWidth / 2;
@@ -100,11 +102,11 @@ const About = () => {
           programmingSlider.scrollLeft += 1;
           programmingScrollAmount += 1;
         }
-      }, 40); // Slightly different speed for variation
+      }, 25);
       
       return () => clearInterval(programmingSlideTimer);
     }
-  }, [activeTab, isInView]);
+  }, [activeTab, isInView, isProgrammingHovered]);
 
   // Observer for section visibility
   useEffect(() => {
@@ -187,12 +189,14 @@ const About = () => {
                 ref={frontendSliderRef} 
                 className="flex gap-3 overflow-x-auto py-2 scrollbar-hide"
                 style={{ scrollBehavior: 'smooth' }}
+                onMouseEnter={() => setIsFrontendHovered(true)}
+                onMouseLeave={() => setIsFrontendHovered(false)}
               >
                 {["React.js", "JavaScript", "TypeScript", "HTML5", "CSS3", "Tailwind CSS", "Bootstrap" , "Node JS","Express JS", "MongoDb", "MySQL", "PostgreSQL", "Git", "GitHub"].map((skill) => (
                   <SkillTag key={skill} skill={skill} />
                 ))}
                 {/* Duplicate for continuous scrolling effect */}
-                {["React.js", "JavaScript", "TypeScript", "HTML5", "CSS3", "Tailwind CSS", "Bootstrap"].map((skill) => (
+                {["React.js", "JavaScript", "TypeScript", "HTML5", "CSS3", "Tailwind CSS", "Bootstrap" , "Node JS","Express JS", "MongoDb", "MySQL", "PostgreSQL", "Git", "GitHub"].map((skill) => (
                   <SkillTag key={`${skill}-duplicate`} skill={skill} />
                 ))}
               </div>
@@ -204,12 +208,14 @@ const About = () => {
                 ref={programmingSliderRef}
                 className="flex gap-3 overflow-x-auto py-2 scrollbar-hide"
                 style={{ scrollBehavior: 'smooth' }}
+                onMouseEnter={() => setIsProgrammingHovered(true)}
+                onMouseLeave={() => setIsProgrammingHovered(false)}
               >
-                {["C", "C++", "Python"].map((skill) => (
+                {["C", "C++"].map((skill) => (
                   <SkillTag key={skill} skill={skill} />
                 ))}
-                {/* Duplicate for continuous scrolling effect */}
-                {/* {["C", "C++", "Python"].map((skill) => (
+                {/* Duplicate for continuous scrolling effect
+                {["C", "C++", "Python"].map((skill) => (
                   <SkillTag key={`${skill}-duplicate`} skill={skill} />
                 ))} */}
               </div>
@@ -338,7 +344,7 @@ const About = () => {
               className="relative rounded-2xl overflow-hidden m-1 shadow-2xl bg-gray-800"
             >
               <img 
-                src={profileImage} 
+                src={profileImage}
                 alt="Serene" 
                 className="w-full object-cover aspect-square" 
               />
@@ -365,7 +371,7 @@ const About = () => {
   <span className="text-yellow-400 font-bold"> B.E. in Computer Engineering</span> at 
   <span className="text-yellow-400 font-bold"> Fr. CRCE</span>, with a strong foundation in full-stack web development and a particular depth in frontend engineering.
   <br /><br />
-  While I’ve worked across 
+  While I've worked across 
   <span className="text-yellow-400 font-bold"> React</span>, 
   <span className="text-yellow-400 font-bold"> Node.js</span>, 
   <span className="text-yellow-400 font-bold"> Express</span>, and 
@@ -375,7 +381,7 @@ const About = () => {
   <span className="text-yellow-400 font-bold"> JavaScript</span>, and 
   <span className="text-yellow-400 font-bold"> Tailwind CSS</span>.
   <br /><br />
-  I’ve explored and refined these skills through hands-on projects such as: 
+  I've explored and refined these skills through hands-on projects such as: 
   <span className="text-yellow-400 font-bold"> BharatSecure</span>, 
   <span className="text-yellow-400 font-bold"> BrightBuilds</span>, 
   <span className="text-yellow-400 font-bold"> OrgFlow</span>, 
@@ -384,7 +390,7 @@ const About = () => {
   These projects have strengthened my ability to think in terms of both 
   <span className="text-yellow-400 font-bold">user experience</span> and 
   <span className="text-yellow-400 font-bold">system architecture</span>, while reinforcing clean integration between frontend and backend.
-  I enjoy building interfaces that are both functional and maintainable — and I’m eager to contribute to teams that value 
+  I enjoy building interfaces that are both functional and maintainable — and I'm eager to contribute to teams that value 
   <span className="text-yellow-400 font-bold">thoughtful design</span> and 
   <span className="text-yellow-400 font-bold">solid engineering practices</span>.
 </p>

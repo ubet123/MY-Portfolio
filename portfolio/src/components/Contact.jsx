@@ -6,6 +6,7 @@ import { FaPhoneAlt } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
 import { FaRegPaperPlane } from "react-icons/fa";
+import DownloadButton from './DownloadButton';
 
 
 const Contact = () => {
@@ -191,18 +192,11 @@ const Contact = () => {
             </div>
           </motion.div>
           
-          <motion.a
+         
+           <DownloadButton   
             href={resumePDF}
-            download
-            variants={buttonVariants}
-            initial="idle"
-            whileHover="hover"
-            whileTap="tap"
-            className="inline-flex items-center px-6 py-3 rounded-xl bg-yellow-300 hover:border-black hover:border-4 text-black font-poppins font-bold text-lg"
-          >
-            Download CV
-            <i className='bx bx-download ml-2'></i>
-          </motion.a>
+            download='resumePDF'/>
+         
         </motion.div>
 
         {/* Contact Form */}
