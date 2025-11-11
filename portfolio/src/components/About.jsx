@@ -167,7 +167,7 @@ const About = () => {
     >
       <h3 className="font-rajdhani font-bold text-yellow-400">{institution}</h3>
       <p className="font-poppins text-sm text-white/90">{degree}, {period}</p>
-      {grades && <p className="font-poppins text-xs text-gray-300 mt-1">{grades}</p>}
+      {grades && <p className="font-poppins text-xs font-bold text-yellow-300 mt-1">{grades}</p>}
     </motion.div>
   );
 
@@ -254,9 +254,9 @@ const About = () => {
           >
             <EducationCard 
               institution="Fr. Conceicao Rodrigues College of Engineering"
-              degree="B.Tech (Computer Engineering)"
+              degree="B.E. (Computer Engineering)"
               period="2023-Current"
-              grades="CGPA: 9.5"
+              grades="CGPA: 9.27"
             />
             <EducationCard 
               institution="Vidyavardhinis Annasaheb Vartak College"
@@ -388,11 +388,11 @@ const About = () => {
   <span className="text-yellow-400 font-bold"> FlickHive</span> and many more.
   <br /><br />
   These projects have strengthened my ability to think in terms of both 
-  <span className="text-yellow-400 font-bold">user experience</span> and 
-  <span className="text-yellow-400 font-bold">system architecture</span>, while reinforcing clean integration between frontend and backend.
+  <span className="text-yellow-400 font-bold"> user experience</span> and 
+  <span className="text-yellow-400 font-bold"> system architecture</span>, while reinforcing clean integration between frontend and backend.
   I enjoy building interfaces that are both functional and maintainable — and I'm eager to contribute to teams that value 
-  <span className="text-yellow-400 font-bold">thoughtful design</span> and 
-  <span className="text-yellow-400 font-bold">solid engineering practices</span>.
+  <span className="text-yellow-400 font-bold"> thoughtful design</span> and 
+  <span className="text-yellow-400 font-bold"> solid engineering practices</span>.
 </p>
 
             </motion.div>
