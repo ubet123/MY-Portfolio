@@ -25,7 +25,7 @@ const Projects = () => {
       title: "BharatSecure",
       description: "A women safety platform featuring SOS alerts, danger zone mapping, voice commands, and live location sharing.",
       image: BharatSecureImg,
-      link: "https://bharat-secure.vercel.app/",
+      link: "https://bharat-secure-ochre.vercel.app/",
       color: "#FF8A00"
     },
     {
