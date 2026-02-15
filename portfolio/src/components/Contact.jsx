@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import resumePDF from '../assets/Serene_New_Resume.pdf'
+import resumePDF from '../assets/SereneDmello_Resume_5.pdf';
 import { MdOutlineEmail } from "react-icons/md";
 import { FaPhoneAlt } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
