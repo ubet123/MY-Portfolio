@@ -1,158 +1,197 @@
-import React, { useEffect, useRef, useState } from 'react';
-import Typewriter from 'typewriter-effect';
-import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa6";
+import React, { useEffect, useMemo, useState } from 'react';
+import { AnimatePresence, motion as Motion } from 'framer-motion';
+import { FaGithub, FaLinkedin } from 'react-icons/fa6';
 
 const Header = () => {
-  const navRef = useRef(null);
   const [scrolled, setScrolled] = useState(false);
-  const [drop,setDrop]=useState(false)
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [headlineIndex, setHeadlineIndex] = useState(0);
 
-  const socialLinks = [
-    { icon: <FaGithub className="text-black text-xl " />, url: 'https://github.com/ubet123/' },
-    { icon: <FaLinkedin className="text-black text-xl" />, url: 'https://www.linkedin.com/in/serene-dmello-572605344/' },
-    
-  ];
+  const headlines = useMemo(
+    () => [
+      'I build web experiences with precision.',
+      'I craft clean, responsive product interfaces.',
+      'I turn ideas into elegant front-end systems.',
+    ],
+    []
+  );
 
   useEffect(() => {
-    const handleScroll = () => {
-      const isScrolled = window.scrollY > 50; 
-      setScrolled(isScrolled);
-      
-      if (navRef.current) {
-        if (isScrolled) {
-          navRef.current.classList.add('bg-opacity-65', 'backdrop-blur-xl');
-          navRef.current.classList.remove('bg-opacity-100');
-        } else {
-          navRef.current.classList.remove('bg-opacity-35', 'backdrop-blur-xl');
-          navRef.current.classList.add('bg-opacity-100');
-        }
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
+    const handleScroll = () => setScrolled(window.scrollY > 24);
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const dropdown=()=>{
-    setDrop(!drop)
+  useEffect(() => {
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduceMotion) return undefined;
 
-  }
+    const id = window.setInterval(() => {
+      setHeadlineIndex((current) => (current + 1) % headlines.length);
+    }, 2800);
+
+    return () => window.clearInterval(id);
+  }, [headlines.length]);
+
+  const navItems = ['Home', 'About', 'Projects', 'Contact'];
 
   return (
-    <div id="header" 
-      className="w-full h-screen bg-center bg-no-repeat bg-cover bg-fixed" 
-      style={{ backgroundImage: `url(https://images.unsplash.com/photo-1644677656410-c6ffa3f8fa6d?q=80&w=1632&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)` }}
-    >
-      {/* Navigation Bar */}
-      <div 
-        ref={navRef}
-        className="flex flex-row justify-between items-center py-4 bg-[rgba(3,3,3,0.966)] w-full px-6 md:px-10 lg:px-14 xl:pr-40 shadow-md fixed top-0 z-40 transition-all duration-300"
+    <header id="header" className="relative min-h-screen overflow-hidden bg-[#050506]">
+      {/* Background image — dark abstract light streaks */}
+      {/* Background image — dark dev setup with code on screens */}
+      <div
+        className="absolute inset-0 bg-cover bg-center md:bg-fixed"
+        style={{
+          backgroundImage:
+            'url(https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1920&auto=format&fit=crop)',
+        }}
+      />
+      {/* Dark overlay for readability */}
+      <div className="absolute inset-0 bg-black/55" />
+      {/* Warm accent gradient washes */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_20%_30%,rgba(250,204,21,0.13),transparent_50%),radial-gradient(ellipse_at_75%_70%,rgba(250,204,21,0.09),transparent_50%)]" />
+      {/* Film grain texture */}
+      <div className="hero-noise absolute inset-0 opacity-[0.025]" />
+      {/* Edge vignette */}
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_30%,rgba(5,5,6,0.9)_100%)]" />
+
+      <nav
+        className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
+          scrolled
+            ? 'bg-[#060607]/80 shadow-[0_4px_30px_rgba(0,0,0,0.4)] backdrop-blur-2xl'
+            : 'bg-transparent'
+        }`}
       >
-        <div className="font-orbitron text-3xl md:text-4xl lg:text-5xl font-extrabold text-white">
-          <span className="text-yellow-400">S</span>erene.
-        </div>
-        
-        {/* Mobile menu button */}
-        <div onClick={dropdown} className="md:hidden">
-          <button className="text-white focus:outline-none">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+        <div className="section-shell flex h-20 items-center justify-between">
+          <a href="#" className="font-accent text-3xl font-extrabold tracking-tight text-white transition-all duration-300 hover:scale-[1.04] md:text-4xl">
+            <span className="text-yellow-400">S</span>erene<span className="text-yellow-400">.</span>
+          </a>
+
+          <div className="hidden md:flex">
+            <div className="flex items-center gap-0.5 rounded-full border border-white/10 bg-white/[0.04] px-1.5 py-1.5 backdrop-blur-md">
+              {navItems.map((item) => (
+                <a
+                  key={item}
+                  href={item === 'Home' ? '#' : `#${item.toLowerCase()}`}
+                  className="relative rounded-full px-4 py-1.5 font-heading text-[13px] font-medium text-gray-300 transition-all duration-300 hover:bg-white/[0.08] hover:text-yellow-300"
+                >
+                  {item}
+                </a>
+              ))}
+            </div>
+          </div>
+
+          <button
+            type="button"
+            onClick={() => setMenuOpen((value) => !value)}
+            className="rounded-full border border-white/15 bg-white/[0.04] p-2.5 text-white backdrop-blur-md transition-all duration-300 hover:border-yellow-300/30 hover:bg-white/[0.08] md:hidden"
+            aria-label="Open navigation menu"
+            aria-expanded={menuOpen}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              {menuOpen
+                ? <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                : <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              }
             </svg>
           </button>
         </div>
 
-        {/*Dropdown navbar*/}
-        {drop?(<div className={`
-  flex fixed top-20 left-6
-  transition-height duration-300 ease-in-out 
-  ${drop ? 'h-44 translate-y-0' : 'h-0 -translate-y-2'} 
-  flex-col  rounded-lg
-  bg-gray-900/95 backdrop-blur-sm  
-  text-yellow-400 border border-gray-800 
-  
-  items-center
-  justify-center gap-4 font-rajdhani font-bold text-lg
-  w-80
-`}>
-        <a href="#" onClick={()=>setDrop(!drop)}><div className='cursor-pointer'>Home</div></a>  
-        <a href="#about" onClick={()=>setDrop(!drop)}><div className='cursor-pointer'>About</div></a>  
-        <a href="#projects" onClick={()=>setDrop(!drop)}><div className='cursor-pointer'>Projects</div></a>  
-         <a href="#contact" onClick={()=>setDrop(!drop)}><div className='cursor-pointer'>Contact</div></a> 
-        </div>):''}
-        
-        
-        {/* Desktop navigation */}
-        <ul className="hidden md:flex flex-row list-none justify-around gap-4 lg:gap-8 text-base lg:text-xl font-semibold font-rajdhani">
-          {['Home', 'About', 'Projects', 'Contact'].map((item, index) => (
-            <li key={index} className="cursor-pointer relative group">
-              <a 
-                href={item === 'Home' ? '#' : `#${item.toLowerCase()}`} 
-                className="text-white no-underline px-2 py-1 transition-colors duration-300"
+        {menuOpen && (
+          <div className="section-shell pb-4 md:hidden">
+            <div className="rounded-2xl border border-white/10 bg-[#0a0b0e]/95 p-4 backdrop-blur-2xl">
+              <ul className="space-y-1 font-heading text-[15px] text-white">
+                {navItems.map((item) => (
+                  <li key={item}>
+                    <a
+                      href={item === 'Home' ? '#' : `#${item.toLowerCase()}`}
+                      onClick={() => setMenuOpen(false)}
+                      className="block rounded-xl px-4 py-2.5 transition-all duration-200 hover:bg-white/[0.06] hover:text-yellow-300"
+                    >
+                      {item}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        )}
+      </nav>
+
+      <div className="section-shell relative z-10 flex min-h-screen items-center pt-24">
+        <div className="max-w-3xl">
+          <p className="mb-4 inline-flex items-center gap-2 rounded-full border border-yellow-300/35 bg-yellow-300/10 px-4 py-2 font-heading text-xs font-medium tracking-[0.15em] text-yellow-300">
+            <span className="inline-block h-1.5 w-1.5 rounded-full bg-yellow-300 animate-pulse" />
+            FRONTEND DEVELOPER
+          </p>
+
+          <h1 className="font-accent text-4xl font-bold leading-tight text-white sm:text-5xl md:text-6xl lg:text-7xl">
+            Hi, I am <span className="text-shimmer">Serene</span>
+          </h1>
+
+          <div className="mt-5 min-h-[3rem] overflow-hidden">
+            <AnimatePresence mode="wait">
+              <Motion.p
+                key={headlineIndex}
+                initial={{ opacity: 0, y: 16, filter: 'blur(4px)' }}
+                animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                exit={{ opacity: 0, y: -12, filter: 'blur(4px)' }}
+                transition={{ duration: 0.45, ease: [0.25, 0.46, 0.45, 0.94] }}
+                className="font-body text-xl text-gray-200 md:text-2xl"
               >
-                {item}
-                <span className="absolute left-0 bottom-0 h-[3px] w-0 bg-yellow-400 transition-all duration-300 rounded-full group-hover:w-full"></span>
-              </a>
-            </li>
-          ))}
-        </ul>
+                {headlines[headlineIndex]}
+              </Motion.p>
+            </AnimatePresence>
+          </div>
+
+          <div className="mt-9 flex flex-wrap items-center gap-4">
+            <a
+              href="#projects"
+              className="accent-ring rounded-xl bg-yellow-300 px-7 py-3.5 font-heading text-sm font-semibold tracking-wide text-black transition-all duration-300 hover:scale-[1.03] hover:bg-yellow-200 hover:shadow-[0_0_24px_rgba(250,204,21,0.25)]"
+            >
+              View Projects
+            </a>
+            <a
+              href="#contact"
+              className="rounded-xl border border-white/30 px-7 py-3.5 font-heading text-sm font-medium tracking-wide text-white transition-all duration-300 hover:border-yellow-300/60 hover:bg-yellow-300/5 hover:text-yellow-200"
+            >
+              Contact Me
+            </a>
+          </div>
+
+          <div className="mt-10 flex items-center gap-3">
+            <a
+              href="https://github.com/ubet123/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white transition-all duration-300 hover:border-yellow-300 hover:bg-yellow-300/15 hover:text-yellow-300 hover:shadow-[0_0_18px_rgba(250,204,21,0.15)]"
+              aria-label="GitHub"
+            >
+              <FaGithub className="text-lg" />
+            </a>
+            <a
+              href="https://www.linkedin.com/in/serene-dmello-572605344/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white transition-all duration-300 hover:border-yellow-300 hover:bg-yellow-300/15 hover:text-yellow-300 hover:shadow-[0_0_18px_rgba(250,204,21,0.15)]"
+              aria-label="LinkedIn"
+            >
+              <FaLinkedin className="text-lg" />
+            </a>
+          </div>
+        </div>
       </div>
 
-     
-      <div className={`animate-appear absolute left-1/2 top-1/2 transform -translate-x-1/2 ${scrolled ? '-translate-y-[70%]' : '-translate-y-[60%]'} w-4/5 md:w-auto text-center -mt-16 transition-all duration-300`}>
-  
-  <div className="relative mb-2">
-    <div className="font-dosis uppercase tracking-widest text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-cyan-300 mb-2">
-      Front-end Developer
-    </div>
-    <div className="absolute left-1/2 -translate-x-1/2 -top-2 font-dosis uppercase tracking-widest text-2xl md:text-3xl font-bold text-gray-800 opacity-20 blur-sm">
-      Front-end Developer
-    </div>
-  </div>
-  
-  {/*typewriter effect */}
-  <div className="font-special-gothic text-3xl md:text-4xl lg:text-5xl pt-2 lg:pt-5 text-white drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">
-    <Typewriter
-      options={{
-        strings: [
-          "Hi, I'm Serene",
-          "I build web experiences",
-          "I create digital solutions",
-          "Welcome to my portfolio!"
-        ],
-        autoStart: true,
-        loop: true,
-        delay: 50,
-        deleteSpeed: 20,
-        wrapperClassName: "text-yellow-400",
-        cursorClassName: "text-yellow-400"
-      }}
-    />
-  </div>
-  
-  
-</div>
-      {/* Decorative elements */}
-      <div className="absolute bottom-16 left-1/2 transform -translate-x-1/2 flex gap-3">
-        <div className="w-3 h-8 rounded-full bg-black animate-bounce"></div>
-        <div className="w-3 h-8 rounded-full bg-black animate-bounce" style={{ animationDelay: '0.2s' }}></div>
-        <div className="w-3 h-8 rounded-full bg-black animate-bounce" style={{ animationDelay: '0.4s' }}></div>
+      <div className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2">
+        <a href="#about" className="animate-scroll-hint inline-flex flex-col items-center gap-1 text-white/50 transition-colors hover:text-yellow-300" aria-label="Scroll down">
+          <span className="font-heading text-[10px] font-medium tracking-[0.2em] uppercase">Scroll</span>
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+          </svg>
+        </a>
       </div>
-      
-      {/* Social media links */}
-      <div className="hidden md:flex flex-col absolute right-6 bottom-1/3 gap-4 z-40">
-        {socialLinks.map((item, index) => (
-          <a
-            key={index}
-            href={item.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-10 h-10 rounded-full bg-white hover:bg-yellow-400 flex items-center justify-center transition-all duration-300 transform hover:scale-110"
-          >
-            {item.icon}
-          </a>
-        ))}
-      </div>
-    </div>
+    </header>
   );
 };
 

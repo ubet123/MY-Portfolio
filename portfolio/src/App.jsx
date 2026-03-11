@@ -11,14 +11,15 @@ import AnimatedCursor from './components/AnimatedCursor';
 function App() {
   return (
     <>
-    <AnimatedCursor/>
-    <div className="App">
-      <Header />
-      <About />
-      <Projects />
-      <Contact />
-      <Footer />
-    </div>
+      <AnimatedCursor />
+      <div className="App relative overflow-x-hidden">
+        <div className="pointer-events-none absolute inset-0 -z-10 soft-grid opacity-[0.13]" />
+        <Header />
+        <About />
+        <Projects />
+        <Contact />
+        <Footer />
+      </div>
     </>
   );
 }

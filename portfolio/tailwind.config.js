@@ -7,14 +7,9 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        horizon: ['Horizon', 'sans-serif'],
-        poppins: ['Poppins', 'sans-serif'],
-        rajdhani: ['Rajdhani', 'sans-serif'],
-        pressstart: ['Press Start 2P', 'cursive'],
-        orbitron: ['Orbitron', 'sans-serif'],
-        dosis: ['Dosis', 'sans-serif'],
-        'special-gothic': ['Special Gothic Expanded One', 'sans-serif'],
-        'winky-rough': ['Winky Rough', 'sans-serif'],
+        heading: ['Space Grotesk', 'sans-serif'],
+        body: ['Inter', 'sans-serif'],
+        accent: ['Syne', 'sans-serif'],
       },
       animation: {
         scaleUp: 'scaleUp 0.3s ease-in-out',

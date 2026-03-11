@@ -1,72 +1,38 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion as Motion } from 'framer-motion';
 
 const Footer = () => {
   return (
-    <motion.footer 
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
-      className="w-full bg-gray-900 py-6 text-center relative overflow-hidden border-t border-gray-800"
+    <Motion.footer
+      initial={{ opacity: 0, y: 18 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.45 }}
+      className="relative mt-10 bg-[#0a0b0d]"
     >
-    
-      <motion.div 
-        initial={{ scaleX: 0 }}
-        animate={{ scaleX: 1 }}
-        transition={{ duration: 1.2, delay: 0.2 }}
-        className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#FFD166] to-transparent origin-left"
-      />
-      
-      <div className="container mx-auto px-4">
-        <motion.div 
-          whileHover={{ scale: 1.02 }}
-          className="inline-block"
-        >
-          <span className="text-gray-400 font-light text-sm tracking-wider">
-            © {new Date().getFullYear()}{' '}
-          </span>
-          <motion.span 
-            initial={{ color: "#FFFFFF" }}
-            whileHover={{ 
-              color: "#FFD166",
-              textShadow: "0 0 8px rgba(255, 209, 102, 0.4)"
-            }}
-            transition={{ duration: 0.3 }}
-            className="font-normal text-white cursor-pointer font-special-gothic text-xl tracking-tight"
-            
+      <div className="h-px bg-gradient-to-r from-transparent via-yellow-300/30 to-transparent" />
+      <div className="section-shell py-8">
+        <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
+          <div>
+            <a href="#" className="font-heading text-lg font-bold text-white">
+              <span className="text-yellow-400">S</span>erene.
+            </a>
+            <p className="mt-1 font-body text-sm tracking-wide text-gray-500">
+              &copy; {new Date().getFullYear()} All rights reserved.
+            </p>
+          </div>
+          <a
+            href="#"
+            className="group inline-flex items-center gap-2 rounded-lg border border-white/15 px-4 py-2 font-heading text-sm font-medium text-gray-300 transition-all duration-300 hover:border-yellow-300/40 hover:text-yellow-300"
           >
-            Serene
-          </motion.span>
-        </motion.div>
-
-       
-        {[...Array(4)].map((_, i) => (
-          <motion.div
-            key={i}
-            initial={{ y: 0, opacity: 0 }}
-            animate={{ 
-              y: -10,
-              opacity: [0, 0.4, 0],
-              transition: {
-                duration: 5 + Math.random() * 5,
-                repeat: Infinity,
-                delay: Math.random() * 3,
-                ease: "linear"
-              }
-            }}
-            className="absolute rounded-full bg-[#FFD166]"
-            style={{
-              width: `${Math.random() * 20 + 2}px`,
-              height: `${Math.random() * 22 + 2}px`,
-              left: `${Math.random() * 100}%`,
-              bottom: `${Math.random() * 15 + 5}%`,
-              filter: "blur(0.5px)"
-            }}
-          />
-        ))}
+            Back to top
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5 transition-transform duration-300 group-hover:-translate-y-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 15l7-7 7 7" /></svg>
+          </a>
+        </div>
       </div>
-    </motion.footer>
+    </Motion.footer>
   );
 };
 
 export default Footer;
+

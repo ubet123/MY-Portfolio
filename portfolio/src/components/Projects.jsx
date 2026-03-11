@@ -1,256 +1,227 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { motion, useInView, AnimatePresence } from 'framer-motion';
-import BharatSecureImg from '../assets/project_img/bs-portfolio.webp'
-import BrightBuildsImg from '../assets/project_img/brightbuilds-portfolio.avif'
-import OrgFlowImg from '../assets/project_img/management-coaching-business-dealing-mentor-concept_53876-133858.avif'
-import FlickHiveImg from '../assets/project_img/flickhive-portfolio.webp'
-import TurningTideImg from '../assets/project_img/turningtide-portfolio.webp'
+import React, { useEffect, useState } from 'react';
+import { AnimatePresence, motion as Motion, useReducedMotion } from 'framer-motion';
+import BharatSecureImg from '../assets/project_img/bs-portfolio.webp';
+import BrightBuildsImg from '../assets/project_img/brightbuilds-portfolio.avif';
+import OrgFlowImg from '../assets/project_img/management-coaching-business-dealing-mentor-concept_53876-133858.avif';
+import FlickHiveImg from '../assets/project_img/flickhive-portfolio.webp';
+import TurningTideImg from '../assets/project_img/turningtide-portfolio.webp';
+
+const projectsData = [
+  {
+    id: 1,
+    title: 'BharatSecure',
+    description:
+      'A women safety platform featuring SOS alerts, danger zone mapping, voice commands, and live location sharing.',
+    image: BharatSecureImg,
+    link: 'https://bharat-secure-ochre.vercel.app/',
+    color: '#FFB020',
+  },
+  {
+    id: 2,
+    title: 'BrightBuilds',
+    description:
+      'A student project showcase platform that maps creative coding projects to SDGs, with ratings, filters, and mentorship features.',
+    image: BrightBuildsImg,
+    link: 'https://bright-builds.vercel.app/',
+    color: '#3ECF8E',
+  },
+  {
+    id: 3,
+    title: 'OrgFlow',
+    description:
+      'A task management system for organizations with role-based dashboards, task tracking, and progress monitoring.',
+    image: OrgFlowImg,
+    link: 'https://org-flow-six.vercel.app/',
+    color: '#8E7CFF',
+  },
+  {
+    id: 4,
+    title: 'FlickHive',
+    description:
+      'A favorite movies and TV tracker with filtering, dark mode, and local storage persistence for a seamless experience.',
+    image: FlickHiveImg,
+    link: 'https://flick-hive-yg8z.vercel.app/',
+    color: '#FF6B78',
+  },
+  {
+    id: 5,
+    title: 'Turning Tide Website',
+    description:
+      'A website promoting ocean cleanup with a pollution map, leaderboard, and eco-friendly shop.',
+    image: TurningTideImg,
+    link: 'https://ubet123.github.io/TurningTideFinal/',
+    color: '#66D9E8',
+  },
+];
 
 const Projects = () => {
-  const [activeProject, setActiveProject] = useState(null);
-  const projectsRef = useRef(null);
-  const isInView = useInView(projectsRef, { once: false, amount: 0.2 });
+  const [activeProjectId, setActiveProjectId] = useState(null);
+  const reduceMotion = useReducedMotion();
 
   useEffect(() => {
-    if (activeProject) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'auto';
+    if (!activeProjectId) {
+      document.body.style.overflow = '';
+      return;
     }
-  }, [activeProject]);
 
-  const projectsData = [
-    {
-      id: 1,
-      title: "BharatSecure",
-      description: "A women safety platform featuring SOS alerts, danger zone mapping, voice commands, and live location sharing.",
-      image: BharatSecureImg,
-      link: "https://bharat-secure-ochre.vercel.app/",
-      color: "#FF8A00"
-    },
-    {
-      id: 2,
-      title: "BrightBuilds",
-      description: "A student project showcase platform that maps creative coding projects to SDGs, with ratings, filters, and mentorship features.",
-      image: BrightBuildsImg,
-      link: "https://bright-builds.vercel.app/",
-      color: "#00C853"
-    },
-    {
-      id: 3,
-      title: "OrgFlow",
-      description: "A task management system for organizations with role-based dashboards, task tracking, and progress monitoring.",
-      image: OrgFlowImg,
-      link: "https://org-flow-six.vercel.app/",
-      color: "#6A1AFF"
-    },
-    {
-      id: 4,
-      title: "FlickHive",
-      description: "The Favorite Movies/TV Shows Tracker lets users manage and filter their favorite movies and TV shows by genre. It includes dark mode and stores preferences using local storage for a seamless experience.",
-      image: FlickHiveImg,
-      link: "https://flick-hive-yg8z.vercel.app/",
-      color: "#FF004F"
-    },
-    {
-      id: 5,
-      title: "Turning Tide Website",
-      description: "A website promoting ocean cleanup with a pollution map, leaderboard, and eco-friendly shop.",
-      image: TurningTideImg,
-      link: "https://ubet123.github.io/TurningTideFinal/",
-      color: "#00BCD4"
-    }
-  ];
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3
-      }
-    }
-  };
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [activeProjectId]);
 
-  const projectVariants = {
-    hidden: { y: 50, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: { duration: 0.6, ease: "easeOut" }
-    }
-  };
-
-  const detailsVariants = {
-    hidden: { opacity: 0, scale: 0.8 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: { duration: 0.5, ease: "easeOut" }
-    },
-    exit: {
-      opacity: 0,
-      scale: 0.8,
-      transition: { duration: 0.3 }
-    }
-  };
-
-  const toggleProject = (id) => {
-    setActiveProject(activeProject === id ? null : id);
-  };
+  const activeProject = projectsData.find((project) => project.id === activeProjectId);
 
   return (
-    <section ref={projectsRef} className="py-20 px-6 md:px-12 lg:px-24 bg-black text-white overflow-hidden">
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-        transition={{ duration: 0.8 }}
-        className="relative mb-16"
-      >
-        <h2 id="projects" className="text-4xl md:text-6xl lg:text-7xl font-orbitron font-bold tracking-wider">
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ff004f] to-[#ffd401]">Creative</span> Projects
-        </h2>
-        <p className="mt-4 font-dosis text-lg md:text-xl text-gray-300 max-w-2xl">
-          A collection of my most innovative work, pushing boundaries and solving real-world problems.
-        </p>
-      </motion.div>
+    <section id="projects" className="relative py-24 md:py-28">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(250,204,21,0.11),transparent_36%),radial-gradient(circle_at_20%_80%,rgba(255,255,255,0.07),transparent_40%)]" />
 
-      <motion.div
-        variants={containerVariants}
-        initial="hidden"
-        animate={isInView ? "visible" : "hidden"}
-        className="relative"
-      >
-        <div className="flex flex-col md:flex-row flex-wrap relative z-10">
-          {projectsData.map((project) => (
-            <motion.div
-              key={project.id}
-              variants={projectVariants}
-              className="w-full md:w-1/2 lg:w-1/3 p-4 relative z-10"
-            >
-              <motion.div
-                className="group cursor-pointer relative h-64 md:h-80 rounded-xl overflow-hidden"
-                style={{ background: `linear-gradient(135deg, ${project.color}40, ${project.color})` }}
-                whileHover={{ y: -10 }}
-                transition={{ duration: 0.3 }}
-                onClick={() => toggleProject(project.id)}
-              >
-                <div className="absolute inset-0 flex flex-col justify-end p-6 z-30">
-                  <motion.h3 
-                    className="font-winky-rough text-sm md:text-3xl mb-2"
-                    initial={{ opacity: 0.8 }}
-                    whileHover={{ scale: 1.05 }}
-                  >
-                    {project.title}
-                  </motion.h3>
-                  <motion.div
-                    className="w-16 h-1 bg-white rounded mb-3"
-                    initial={{ width: "16px" }}
-                    whileHover={{ width: "40px" }}
-                  />
-                  <motion.p 
-                    className="font-rajdhani text-xs md:text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  >
-                    Click to explore
-                  </motion.p>
-                </div>
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-60"
-                  whileHover={{ opacity: 0.8 }}
-                />
-                <motion.div 
-                  className="absolute top-4 right-4 w-10 h-10 bg-transparent rounded-full flex items-center justify-center text-black"
-                  whileHover={{ scale: 1.2, rotate: 90 }}
-                >
-                </motion.div>
-              </motion.div>
-            </motion.div>
-          ))}
-        </div>
-
-        <AnimatePresence>
-          {activeProject && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black bg-opacity-80 backdrop-blur-sm flex items-center justify-center z-40 p-4 md:p-8"
-              onClick={() => setActiveProject(null)}
-            >
-              <motion.div
-                variants={detailsVariants}
-                initial="hidden"
-                animate="visible"
-                exit="exit"
-                className="bg-gray-900 rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto z-50"
-                onClick={(e) => e.stopPropagation()}
-              >
-                {projectsData.filter(p => p.id === activeProject).map(project => (
-                  <div key={project.id} className="flex flex-col md:flex-row">
-                    <div className="w-full md:w-1/2 h-64 md:h-auto">
-                      <img 
-                        src={project.image} 
-                        alt={project.title}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                    <div className="w-full md:w-1/2 p-6 md:p-8">
-                      <h2 className="font-special-gothic text-2xl md:text-3xl mb-4" style={{ color: project.color }}>
-                        {project.title}
-                      </h2>
-                      <p className="font-poppins text-gray-300 mb-6">
-                        {project.description}
-                      </p>
-                      <a 
-                        href={project.link} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="inline-block"
-                      >
-                        <motion.button 
-                          className="px-6 py-3 rounded-lg font-horizon text-white flex items-center gap-2"
-                          style={{ backgroundColor: project.color }}
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.95 }}
-                        >
-                          Visit Project
-                          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                          </svg>
-                        </motion.button>
-                      </a>
-                      <button 
-                        onClick={() => setActiveProject(null)}
-                        className="mt-4 text-black font-poppins bg-green-400 hover:bg-green-700 rounded-lg px-4 py-3 ml-2 hover:text-white transition-colors"
-                      >
-                        Close
-                      </button>
-                    </div>
-                  </div>
-                ))}
-              </motion.div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </motion.div>
-
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-        transition={{ duration: 0.8, delay: 0.6 }}
-        className="mt-16 flex justify-center"
-      >
-        <motion.a
-          href="#contact"
-          className="relative inline-flex items-center px-8 py-4 overflow-hidden font-horizon text-lg tracking-wider text-white bg-transparent rounded-lg group"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
+      <div className="section-shell relative">
+        <Motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ duration: 0.6 }}
         >
-          Let's Collaborate
-        </motion.a>
-      </motion.div>
+          <h2 className="section-title">
+            <span className="text-yellow-300">Creative</span> Projects
+          </h2>
+          <p className="section-subtitle">
+            A focused collection of products where I combine clean interface design, performance, and real-world utility.
+          </p>
+        </Motion.div>
+
+        <Motion.div
+          initial={{ opacity: 0, y: 18 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ duration: 0.6, delay: 0.08 }}
+          className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3"
+        >
+          {projectsData.map((project, i) => (
+            <Motion.article
+              key={project.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ duration: 0.45, delay: i * 0.07 }}
+              className="group glass-panel overflow-hidden rounded-2xl border border-white/10 transition-all duration-500 hover:border-opacity-30 hover:-translate-y-1"
+              style={{ '--project-color': project.color }}
+              onMouseEnter={(e) => e.currentTarget.style.boxShadow = `0 20px 55px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.04), 0 0 50px ${project.color}15`}
+              onMouseLeave={(e) => e.currentTarget.style.boxShadow = ''}
+            >
+              <button
+                type="button"
+                onClick={() => setActiveProjectId(project.id)}
+                className="w-full text-left"
+              >
+                <div className="relative h-52 overflow-hidden md:h-56">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
+                  <span
+                    className="absolute left-4 top-4 rounded-full px-3 py-1 text-xs font-semibold tracking-wide text-black shadow-lg"
+                    style={{ backgroundColor: project.color }}
+                  >
+                    Featured
+                  </span>
+                </div>
+
+                <div className="p-5">
+                  <h3 className="font-heading text-xl font-bold text-white transition-colors duration-300 group-hover:text-yellow-300">{project.title}</h3>
+                  <p className="mt-2 line-clamp-3 font-body text-base leading-relaxed text-gray-300">{project.description}</p>
+                  <span className="mt-4 inline-flex items-center gap-1.5 font-heading text-sm font-medium tracking-wide text-yellow-300 transition-all duration-300 group-hover:gap-2.5">
+                    Click to explore
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" /></svg>
+                  </span>
+                </div>
+              </button>
+            </Motion.article>
+          ))}
+        </Motion.div>
+
+        <Motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ duration: 0.55, delay: 0.12 }}
+          className="mt-12 flex justify-center"
+        >
+          <a
+            href="#contact"
+            className="group/cta inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/5 px-7 py-3 font-heading text-base font-medium text-white transition-all duration-300 hover:border-yellow-300/50 hover:bg-yellow-300/5 hover:text-yellow-300 hover:shadow-[0_0_20px_rgba(250,204,21,0.08)]"
+          >
+            Let us collaborate
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 transition-transform duration-300 group-hover/cta:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+          </a>
+        </Motion.div>
+      </div>
+
+      <AnimatePresence>
+        {activeProject && (
+          <Motion.div
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4 backdrop-blur-lg"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            onClick={() => setActiveProjectId(null)}
+          >
+            <Motion.div
+              className="glass-panel max-h-[90vh] w-full max-w-4xl overflow-y-auto rounded-2xl shadow-2xl"
+              onClick={(event) => event.stopPropagation()}
+              initial={reduceMotion ? { opacity: 1 } : { opacity: 0, y: 30, scale: 0.96 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={reduceMotion ? { opacity: 1 } : { opacity: 0, y: 20, scale: 0.97 }}
+              transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+            >
+              <div className="grid grid-cols-1 md:grid-cols-2">
+                <div className="relative h-64 md:h-full">
+                  <img src={activeProject.image} alt={activeProject.title} className="h-full w-full object-cover" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent to-black/20 md:bg-gradient-to-l" />
+                </div>
+
+                <div className="p-6 md:p-8">
+                  <div className="mb-4 inline-flex rounded-full px-3 py-1 text-xs font-bold tracking-wider text-black" style={{ backgroundColor: activeProject.color }}>
+                    PROJECT
+                  </div>
+                  <h3 className="font-accent text-2xl font-bold text-white md:text-3xl" style={{ color: activeProject.color }}>
+                    {activeProject.title}
+                  </h3>
+                  <p className="mt-4 font-body text-lg leading-relaxed text-gray-300">{activeProject.description}</p>
+
+                  <div className="mt-8 flex flex-wrap gap-3">
+                    <a
+                      href={activeProject.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 rounded-lg px-5 py-3 font-heading text-sm font-bold text-black transition-all duration-300 hover:shadow-lg"
+                      style={{ backgroundColor: activeProject.color }}
+                    >
+                      Visit Project
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+                    </a>
+                    <button
+                      type="button"
+                      onClick={() => setActiveProjectId(null)}
+                      className="rounded-lg border border-white/30 px-5 py-3 font-heading text-sm font-medium text-white transition-all duration-300 hover:border-yellow-300 hover:bg-white/5 hover:text-yellow-300"
+                    >
+                      Close
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </Motion.div>
+          </Motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };
 
 export default Projects;
+
