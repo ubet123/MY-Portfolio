@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { AnimatePresence, motion as Motion } from 'framer-motion';
-import { FaGithub, FaLinkedin } from 'react-icons/fa6';
+import { FaGithub, FaLinkedin, FaLocationDot } from 'react-icons/fa6';
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -160,7 +160,7 @@ const Header = () => {
             </a>
           </div>
 
-          <div className="mt-10 flex items-center gap-3">
+          <div className="mt-10 flex items-center gap-4">
             <a
               href="https://github.com/ubet123/"
               target="_blank"
@@ -179,6 +179,13 @@ const Header = () => {
             >
               <FaLinkedin className="text-lg" />
             </a>
+
+            <span className="h-5 w-px bg-white/15" />
+
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.04] px-3.5 py-1.5 font-body text-xs font-medium tracking-wide text-gray-400">
+              <FaLocationDot className="text-yellow-300/70 text-[10px]" />
+              Mumbai, India
+            </span>
           </div>
         </div>
       </div>

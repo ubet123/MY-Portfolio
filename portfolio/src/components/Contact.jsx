@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion as Motion } from 'framer-motion';
 import { FaGithub, FaLinkedin, FaPhoneAlt } from 'react-icons/fa';
 import { MdOutlineEmail } from 'react-icons/md';
-import resumePDF from '../assets/SereneDmello_Resume_5.pdf';
+import resumePDF from '../assets/SereneDmello_Resume_New.pdf';
 import DownloadButton from './DownloadButton';
 
 const Contact = () => {
@@ -154,80 +154,80 @@ const Contact = () => {
               <h3 className="font-accent text-2xl font-bold text-white">Send Me a Message</h3>
               <span className="mt-2 block h-0.5 w-20 rounded-full bg-gradient-to-r from-yellow-300 to-yellow-300/20" />
 
-            <form onSubmit={handleSubmit} className="mt-7 space-y-5">
-              <div>
-                <label htmlFor="name" className="mb-2 block font-heading text-xs font-medium uppercase tracking-wider text-gray-400">
-                  Your Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  className="input-glow w-full rounded-xl border border-white/12 bg-[#101217] px-4 py-3.5 text-white outline-none transition-all duration-300 placeholder:text-gray-500"
-                  placeholder="John Doe"
-                />
-              </div>
+              <form onSubmit={handleSubmit} className="mt-7 space-y-5">
+                <div>
+                  <label htmlFor="name" className="mb-2 block font-heading text-xs font-medium uppercase tracking-wider text-gray-400">
+                    Your Name
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    required
+                    className="input-glow w-full rounded-xl border border-white/12 bg-[#101217] px-4 py-3.5 text-white outline-none transition-all duration-300 placeholder:text-gray-500"
+                    placeholder="John Doe"
+                  />
+                </div>
 
-              <div>
-                <label htmlFor="email" className="mb-2 block font-heading text-xs font-medium uppercase tracking-wider text-gray-400">
-                  Your Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className="input-glow w-full rounded-xl border border-white/12 bg-[#101217] px-4 py-3.5 text-white outline-none transition-all duration-300 placeholder:text-gray-500"
-                  placeholder="john@example.com"
-                />
-              </div>
+                <div>
+                  <label htmlFor="email" className="mb-2 block font-heading text-xs font-medium uppercase tracking-wider text-gray-400">
+                    Your Email
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                    className="input-glow w-full rounded-xl border border-white/12 bg-[#101217] px-4 py-3.5 text-white outline-none transition-all duration-300 placeholder:text-gray-500"
+                    placeholder="john@example.com"
+                  />
+                </div>
 
-              <div>
-                <label htmlFor="message" className="mb-2 block font-heading text-xs font-medium uppercase tracking-wider text-gray-400">
-                  Your Message
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  rows="6"
-                  className="input-glow w-full resize-none rounded-xl border border-white/12 bg-[#101217] px-4 py-3.5 text-white outline-none transition-all duration-300 placeholder:text-gray-500"
-                  placeholder="Hello, I would like to discuss a project..."
-                />
-              </div>
+                <div>
+                  <label htmlFor="message" className="mb-2 block font-heading text-xs font-medium uppercase tracking-wider text-gray-400">
+                    Your Message
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    required
+                    rows="6"
+                    className="input-glow w-full resize-none rounded-xl border border-white/12 bg-[#101217] px-4 py-3.5 text-white outline-none transition-all duration-300 placeholder:text-gray-500"
+                    placeholder="Hello, I would like to discuss a project..."
+                  />
+                </div>
 
-              <button
-                type="submit"
-                disabled={formStatus.isSubmitting}
-                className="inline-flex items-center gap-2 rounded-xl bg-yellow-300 px-7 py-3.5 font-heading text-sm font-bold text-black transition-all duration-300 hover:scale-[1.02] hover:bg-yellow-200 hover:shadow-[0_0_20px_rgba(250,204,21,0.2)] disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:scale-100"
-              >
-                {formStatus.isSubmitting ? (
-                  <>
-                    <svg className="h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" /><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" /></svg>
-                    Sending...
-                  </>
-                ) : 'Send Message'}
-              </button>
+                <button
+                  type="submit"
+                  disabled={formStatus.isSubmitting}
+                  className="inline-flex items-center gap-2 rounded-xl bg-yellow-300 px-7 py-3.5 font-heading text-sm font-bold text-black transition-all duration-300 hover:scale-[1.02] hover:bg-yellow-200 hover:shadow-[0_0_20px_rgba(250,204,21,0.2)] disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:scale-100"
+                >
+                  {formStatus.isSubmitting ? (
+                    <>
+                      <svg className="h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" /><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" /></svg>
+                      Sending...
+                    </>
+                  ) : 'Send Message'}
+                </button>
 
-              {formStatus.isSubmitted && (
-                <p className="rounded-lg border border-green-400/30 bg-green-500/15 px-4 py-3 text-sm text-green-200">
-                  Message sent successfully! I will get back to you soon.
-                </p>
-              )}
+                {formStatus.isSubmitted && (
+                  <p className="rounded-lg border border-green-400/30 bg-green-500/15 px-4 py-3 text-sm text-green-200">
+                    Message sent successfully! I will get back to you soon.
+                  </p>
+                )}
 
-              {formStatus.error && (
-                <p className="rounded-lg border border-red-400/30 bg-red-500/15 px-4 py-3 text-sm text-red-200">
-                  {formStatus.error}
-                </p>
-              )}
-            </form>
+                {formStatus.error && (
+                  <p className="rounded-lg border border-red-400/30 bg-red-500/15 px-4 py-3 text-sm text-red-200">
+                    {formStatus.error}
+                  </p>
+                )}
+              </form>
             </div>
           </Motion.div>
         </div>

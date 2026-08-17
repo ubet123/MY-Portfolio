@@ -15,6 +15,8 @@ const projectsData = [
     image: BharatSecureImg,
     link: 'https://bharat-secure-ochre.vercel.app/',
     color: '#FFB020',
+    tag: 'Full Stack',
+    tech: ['React', 'Node.js', 'MongoDB', 'Maps API'],
   },
   {
     id: 2,
@@ -24,6 +26,8 @@ const projectsData = [
     image: BrightBuildsImg,
     link: 'https://bright-builds.vercel.app/',
     color: '#3ECF8E',
+    tag: 'Full Stack',
+    tech: ['React', 'Express', 'MongoDB', 'Tailwind'],
   },
   {
     id: 3,
@@ -33,6 +37,8 @@ const projectsData = [
     image: OrgFlowImg,
     link: 'https://org-flow-six.vercel.app/',
     color: '#8E7CFF',
+    tag: 'Full Stack',
+    tech: ['React', 'Node.js', 'MongoDB', 'Zustand'],
   },
   {
     id: 4,
@@ -42,6 +48,8 @@ const projectsData = [
     image: FlickHiveImg,
     link: 'https://flick-hive-yg8z.vercel.app/',
     color: '#FF6B78',
+    tag: 'Frontend',
+    tech: ['React', 'TMDB API', 'CSS3'],
   },
   {
     id: 5,
@@ -51,6 +59,8 @@ const projectsData = [
     image: TurningTideImg,
     link: 'https://ubet123.github.io/TurningTideFinal/',
     color: '#66D9E8',
+    tag: 'Frontend',
+    tech: ['HTML', 'CSS', 'JavaScript'],
   },
 ];
 
@@ -84,7 +94,7 @@ const Projects = () => {
           transition={{ duration: 0.6 }}
         >
           <h2 className="section-title">
-            <span className="text-yellow-300">Creative</span> Projects
+            <span className="text-yellow-300">My</span> Projects
           </h2>
           <p className="section-subtitle">
             A focused collection of products where I combine clean interface design, performance, and real-world utility.
@@ -96,7 +106,7 @@ const Projects = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.15 }}
           transition={{ duration: 0.6, delay: 0.08 }}
-          className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3"
+          className="mt-10 grid grid-cols-1 gap-7 md:grid-cols-2 xl:grid-cols-3"
         >
           {projectsData.map((project, i) => (
             <Motion.article
@@ -105,38 +115,59 @@ const Projects = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.1 }}
               transition={{ duration: 0.45, delay: i * 0.07 }}
-              className="group glass-panel overflow-hidden rounded-2xl border border-white/10 transition-all duration-500 hover:border-opacity-30 hover:-translate-y-1"
+              className="group relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-b from-[#14151a] to-[#0b0c0e] transition-all duration-500 hover:-translate-y-2"
               style={{ '--project-color': project.color }}
-              onMouseEnter={(e) => e.currentTarget.style.boxShadow = `0 20px 55px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.04), 0 0 50px ${project.color}15`}
+              onMouseEnter={(e) => e.currentTarget.style.boxShadow = `0 28px 70px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.05), 0 0 70px ${project.color}18, 0 0 0 1px ${project.color}25`}
               onMouseLeave={(e) => e.currentTarget.style.boxShadow = ''}
             >
+              {/* Colored top accent border */}
+              <div className="h-[2px] w-full" style={{ background: `linear-gradient(90deg, transparent, ${project.color}, transparent)` }} />
+
               <button
                 type="button"
                 onClick={() => setActiveProjectId(project.id)}
                 className="w-full text-left"
               >
-                <div className="relative h-52 overflow-hidden md:h-56">
+                <div className="relative h-56 overflow-hidden md:h-64">
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                    className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                     loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0b0c0e] via-black/20 to-transparent" />
+                  {/* Project type badge */}
                   <span
-                    className="absolute left-4 top-4 rounded-full px-3 py-1 text-xs font-semibold tracking-wide text-black shadow-lg"
-                    style={{ backgroundColor: project.color }}
+                    className="absolute left-4 top-4 rounded-full px-3.5 py-1 font-heading text-[10px] font-bold tracking-wider uppercase shadow-lg"
+                    style={{ backgroundColor: project.color, color: '#000' }}
                   >
-                    Featured
+                    {project.tag}
+                  </span>
+                  {/* Index number */}
+                  <span className="absolute right-4 top-4 font-accent text-5xl font-bold leading-none opacity-[0.12] text-white">
+                    {String(i + 1).padStart(2, '0')}
                   </span>
                 </div>
 
-                <div className="p-5">
-                  <h3 className="font-heading text-xl font-bold text-white transition-colors duration-300 group-hover:text-yellow-300">{project.title}</h3>
-                  <p className="mt-2 line-clamp-3 font-body text-base leading-relaxed text-gray-300">{project.description}</p>
-                  <span className="mt-4 inline-flex items-center gap-1.5 font-heading text-sm font-medium tracking-wide text-yellow-300 transition-all duration-300 group-hover:gap-2.5">
-                    Click to explore
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" /></svg>
+                <div className="p-6">
+                  <h3 className="font-heading text-xl font-bold text-white transition-colors duration-300 group-hover:text-yellow-300 md:text-2xl">{project.title}</h3>
+                  <p className="mt-3 line-clamp-3 font-body text-sm leading-relaxed text-gray-400 md:text-base">{project.description}</p>
+
+                  {/* Tech stack pills */}
+                  <div className="mt-5 flex flex-wrap gap-2">
+                    {project.tech.map((t) => (
+                      <span
+                        key={t}
+                        className="rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1 font-body text-xs font-medium text-gray-500"
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+
+                  <span className="mt-5 inline-flex items-center gap-2 font-heading text-sm font-medium tracking-wide text-yellow-300 transition-all duration-300 group-hover:gap-3">
+                    Explore project
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" /></svg>
                   </span>
                 </div>
               </button>
@@ -144,7 +175,7 @@ const Projects = () => {
           ))}
         </Motion.div>
 
-        <Motion.div
+        {/* <Motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.15 }}
@@ -158,7 +189,7 @@ const Projects = () => {
             Let us collaborate
             <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 transition-transform duration-300 group-hover/cta:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
           </a>
-        </Motion.div>
+        </Motion.div> */}
       </div>
 
       <AnimatePresence>

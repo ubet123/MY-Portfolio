@@ -16,26 +16,54 @@
 }
 
 body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
   background:
     radial-gradient(circle at 8% 14%, rgba(250, 204, 21, 0.08), transparent 30%),
     radial-gradient(circle at 88% 22%, rgba(255, 211, 145, 0.1), transparent 36%),
     linear-gradient(180deg, #050506 0%, #090a0e 40%, #050506 100%);
   color: var(--text-main);
   font-family: 'Inter', sans-serif;
-  min-height: 100vh;
   line-height: 1.55;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
-  margin: 0;
 }
 
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 6rem;
+  scrollbar-width: thin;
+  scrollbar-color: #facc15 #0a0b0d;
 }
 
 * {
   box-sizing: border-box;
+}
+
+/* ───── Custom scrollbar (Webkit — Chrome / Edge / Safari) ───── */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0b0d;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #facc15;
+  border-radius: 9999px;
+  border: 2px solid #0a0b0d;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #fde047;
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: #eab308;
 }
 
 #root {
